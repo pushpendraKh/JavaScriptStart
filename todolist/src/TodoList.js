@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TodoItems from './TodoItems'
 import "./TodoList.css";
-
+import ReactLifeCycle from './ReactLifecycle'
 class TodoList  extends Component {
 
     constructor(props){
@@ -21,7 +21,7 @@ class TodoList  extends Component {
         });
     }
     addItem(e){
-        if (this._inputElement !== ""){
+        if (this._inputElement !== " "){
             var newItem = {
                 text:this._inputElement.value,
                 key:Date.now()
@@ -49,6 +49,7 @@ class TodoList  extends Component {
                     </form>
                 </div>
                 <TodoItems entries={this.state.items} delete={this.deleteItem}/>
+                <ReactLifeCycle />
             </div>
         );
     }

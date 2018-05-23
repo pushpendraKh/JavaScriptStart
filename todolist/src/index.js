@@ -5,5 +5,14 @@ import App from './App';
 import TodoList from './TodoList'
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<TodoList />, document.getElementById('root'));
+
+var destination = document.querySelector("#root")
+  
+ReactDOM.render(
+    <div>
+        <TodoList/>
+    </div>,
+    destination
+);
+// ReactDOM.render(<TodoList />, document.getElementById('root'));
 registerServiceWorker();
