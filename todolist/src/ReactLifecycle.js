@@ -52,6 +52,48 @@ export default class ReactLifeCycle extends Component {
           }
     }
 
+    
+    //It is invoked before rendering when new props or state are being received. 
+    //We can use this method for performance optimizations 
+    //and to prevent unnecessary render calls
+    shouldComponentUpdate(){
+        console.log("Shoud component update");
+        return true
+    }
+
+    //It is invoked immediately before rendering 
+    //when new props or state are being received.
+    //We can use this method to compare old props/state
+    // variables to newer ones and invoke some function based on those values.
+    //It is called every time a re-render is required, such as when setState is called.
+    componentWillUpdate(nextProps, nextState){
+        if (nextState.speakervolume === 10 && this.state.speakervolume === 9) {
+           console.log("updating")
+        }
+        console.log("component will update");
+    }
+
+  ///It is invoked immediately after dom updating occurs.
+  // This method is not called for the initial render.
+  //We can use this as an opportunity to operate on the DOM when the component has been updated.
+  //The most common use case of this method is we use 3rd party libraries like d3.js or charts library
+  // like c3.js and we need to update UI library with new data.
+  //One of the notable difference between componentDidUpdate and componentWillUpdate
+  // is that didUpdate gets old props/state variables as input while willUpdate gets new props/state variables as input.
+    componentDidUpdate(prevProps, prevState){
+        console.log("component Did update");
+    }
+
+    //It is invoked immediately before a component is unmounted and destroyed.
+    // Perform any necessary cleanup in this method, such as invalidating timers, 
+    //canceling network requests, cleaning up any DOM elements that were created in 
+    //componentDidUpdate/componentWillMount or destroy 3rd party UI library elements.
+    //If we don’t take the time to remove events we can create memory leaks in our system or 
+    //leave bad references lying around.
+
+    componentWillUnmount(){
+        console.log("Component will unmount");
+    }
     render(){
         return(
             <div > Life Cycle {this.props.dressColor} </div>
@@ -61,3 +103,21 @@ export default class ReactLifeCycle extends Component {
 
 //defaultProps
 ReactLifeCycle.defaultProps = { dressColor: 'red' };
+
+// Methods called during mounting:
+
+// Component.defaultProps
+// this.state/constructor
+// componentWillMount
+// render
+// componentDidMount
+// Methods called for updating Component:
+
+// componentWillRecieveProps
+// shouldComponentUpdate
+// componentWillUpdate
+// render
+// componentDidUpdate
+// Methods called during unmounting:
+
+// componentWillUnmount
