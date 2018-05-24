@@ -24,3 +24,19 @@ console.log(newArray.length)
 for (var grade of grades) {
     console.log(grade)
 }
+
+
+//Imperative programming
+const output = input => {
+    const newArray = []
+    for (i = 0; i< input.length ; i++){
+        newArray.push(input[i].toLowerCase())
+    }
+    return newArray
+}
+let input = ["Ansu", "jain"]
+//delcartive
+const toLowerCase = input.map(value => value.toLowerCase());
+console.log(toLowerCase);
+let finalOutput = output(input)
+console.log(finalOutput);

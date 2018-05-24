@@ -1,4 +1,5 @@
 
+import { RESTART_ON_REMOUNT }from './variables';
 // Both will work
 var nameInDoubleQuote = "Pushpendra";
 var nameInSingleQuote = 'Pushpendra';
@@ -8,9 +9,11 @@ var nameInSingleQuote = 'Pushpendra';
 
 // Uses of Double Quote
 let message = "It's nice to learn ES6"; // Will complile
-message = 'It's nice to learn ES6' // Will not complile
+//message = 'It's nice to learn ES6' // Will not complile
 
 message = 'It\'s nice to learn ES6'; // Will compile
 
 var number  = 54
 console.log(typeof number) // Output -> number
+console.log("Ansu");
+console.log(RESTART_ON_REMOUNT);

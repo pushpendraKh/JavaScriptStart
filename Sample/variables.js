@@ -21,4 +21,6 @@ console.log(`${firstName} ${lastName}`);
 // Constant cant not be changed
 const constantName = "Sun";
 // Will throw a TypeError: Assignment to constant variable
-constantName = "Ravi";
+//constantName = "Ravi";
+
+export const RESTART_ON_REMOUNT = 'constants';
