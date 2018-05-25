@@ -54,8 +54,9 @@ class TodoList  extends Component {
                 <TodoItems entries={this.state.items} delete={this.deleteItem}/>
                 <ReactLifeCycle />
                 <MessageComponent message = "Ansu Jain" />
-                <Button text = "Submit" />
+                <Button text = "Submit" currency = "$" value = "100" />
                 <StateLessFunctionalButton text = "StateLess Function Button component"/>
+                {/* this will throw the warnign in console because text is requird<StateLessFunctionalButton /> */}
             </div>
         );
     }

@@ -8,8 +8,12 @@ class Button extends Component {
             text : "Click Me"
         }
     }
+
+    getPrice() {
+        return `${this.props.currency}${this.props.value}`
+    }
     render() {
-        return <button >{this.state.text}</button>
+        return <button >{this.getPrice()}</button>
     }
 }
 
