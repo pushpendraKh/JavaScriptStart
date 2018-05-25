@@ -5,6 +5,7 @@ import ReactLifeCycle from './ReactLifecycle'
 import MessageComponent from './Message'
 import Button from './Button'
 import StateLessFunctionalButton from './Button1'
+import ButtonWithChildren from './Button3'
 class TodoList  extends Component {
 
     constructor(props){
@@ -56,6 +57,9 @@ class TodoList  extends Component {
                 <MessageComponent message = "Ansu Jain" />
                 <Button text = "Submit" currency = "$" value = "100" />
                 <StateLessFunctionalButton text = "StateLess Function Button component"/>
+                <ButtonWithChildren text = "button with children" >
+                        <span>Click me!</span>
+                </ButtonWithChildren>
                 {/* this will throw the warnign in console because text is requird<StateLessFunctionalButton /> */}
             </div>
         );
