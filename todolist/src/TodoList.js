@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import TodoItems from './TodoItems'
 import "./TodoList.css";
 import ReactLifeCycle from './ReactLifecycle'
+import MessageComponent from './Message'
+import Button from './Button'
+import StateLessFunctionalButton from './Button1'
 class TodoList  extends Component {
 
     constructor(props){
@@ -50,6 +53,9 @@ class TodoList  extends Component {
                 </div>
                 <TodoItems entries={this.state.items} delete={this.deleteItem}/>
                 <ReactLifeCycle />
+                <MessageComponent message = "Ansu Jain" />
+                <Button text = "Submit" />
+                <StateLessFunctionalButton text = "StateLess Function Button component"/>
             </div>
         );
     }
