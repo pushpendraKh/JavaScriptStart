@@ -6,6 +6,7 @@ import MessageComponent from './Message'
 import Button from './Button'
 import StateLessFunctionalButton from './Button1'
 import ButtonWithChildren from './Button3'
+import GeolocationContainer from './GeolocationContainer'
 class TodoList  extends Component {
 
     constructor(props){
@@ -61,6 +62,7 @@ class TodoList  extends Component {
                         <span>Click me!</span>
                 </ButtonWithChildren>
                 {/* this will throw the warnign in console because text is requird<StateLessFunctionalButton /> */}
+                <GeolocationContainer />
             </div>
         );
     }

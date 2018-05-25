@@ -11,7 +11,9 @@ const ButtonWithChildren = ({children}) => {
 }
 
 ButtonWithChildren.propTypes = {
-    children : PropTypes.array
+    children : PropTypes.oneOfType([
+        PropTypes.array, PropTypes.element
+    ])
 }
 
 export default ButtonWithChildren;
