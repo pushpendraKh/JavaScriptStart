@@ -1,0 +1,29 @@
+{
+  "name": "basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "babel-node ./requireAndImport.js"
+  },
+  "babel": {
+    "preset" : [
+        "es2015-node6"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pushpendraKh/JavaScriptStart.git"
+  },
+  "author": "Pushpendra khandelwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pushpendraKh/JavaScriptStart/issues"
+  },
+  "homepage": "https://github.com/pushpendraKh/JavaScriptStart#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015-node6": "^0.4.0"
+  }
+}

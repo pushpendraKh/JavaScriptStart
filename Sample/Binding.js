@@ -1,22 +1,22 @@
 // This is the object, that owns Javascript code
 
-let object = {}
+// let object = {}
 
-object = {
-	name: 'Pushpendra',
-	getName() {
-		return this.name
-	}
-}
+// object = {
+// 	name: 'Pushpendra',
+// 	getName() {
+// 		return this.name
+// 	}
+// }
 
-console.log(`${object.getName()}`) // This will work
+// console.log(`${object.getName()}`) // This will work
 
-let getNameFunction = object.getName
-console.log(`${getNameFunction()}`) // looses this context, so will print undefined
+// let getNameFunction = object.getName
+// console.log(`${getNameFunction()}`) // looses this context, so will print undefined
 
-// So bind this function to the object, so that it can get the context
-let boundNameFunction = getNameFunction.bind(object)
-console.log(`${boundNameFunction()}`)  // It works
+// // So bind this function to the object, so that it can get the context
+// let boundNameFunction = getNameFunction.bind(object)
+// console.log(`${boundNameFunction()}`)  // It works
 
 
 // Another example
@@ -29,20 +29,20 @@ let person2 = {
 	name: 'Ryon'
 }
 
-let log = function getUserName() {
-	console.log(`${this.name}`)
-}
+// let log = function getUserName() {
+// 	console.log(`${this.name}`)
+// }
 
-log() // Will say undefined because of no context
+// log() // Will say undefined because of no context
 
-let boundFunction = log.bind(person2)
-boundFunction()
+// let boundFunction = log.bind(person2)
+// boundFunction()
 
 
-// WHY NOT WORKING -> FIXME
-// let log1 = () => console.log(`${this.name}`)
-// let boundFunction1 = log1.bind(person2)
-// boundFunction1()
+//WHY NOT WORKING -> FIXME
+var log1 = (input) => console.log(`${this.name} ${input}`)
+let boundFunction1 = log1.bind(person2)
+boundFunction1("ansu")
 
 
 // CAll
