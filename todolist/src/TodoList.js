@@ -7,6 +7,8 @@ import Button from './Button'
 import StateLessFunctionalButton from './Button1'
 import ButtonWithChildren from './Button3'
 import GeolocationContainer from './GeolocationContainer'
+import { Link } from 'react-router-dom';
+import GeoLocationWithPresentation from './GeolocationwithPresentation'
 class TodoList  extends Component {
 
     constructor(props){
@@ -63,6 +65,8 @@ class TodoList  extends Component {
                 </ButtonWithChildren>
                 {/* this will throw the warnign in console because text is requird<StateLessFunctionalButton /> */}
                 <GeolocationContainer />
+                <GeoLocationWithPresentation />
+                <Link to="/"><button>Back Home</button></Link>
             </div>
         );
     }
