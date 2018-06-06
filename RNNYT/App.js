@@ -9,12 +9,9 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View,
+  View
 } from 'react-native';
-import BasicType from './DemoComponent'
-import ButtonComponent from './ButtonComponent'
-import getDimensions from './Dimension'
-import DemoOnLayout from './DemoOnLayout'
+import AppText from './src/components/AppText'
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -25,11 +22,8 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    console.log("Running app in debug mode");
-     getDimensions()
     return (
       <View style={styles.container}>
-       <View style = { styles.headerContainer}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -40,11 +34,6 @@ export default class App extends Component<Props> {
           {instructions}
         </Text>
       </View>
-        <BasicType text="really cool "/>
-        <ButtonComponent />
-        <DemoOnLayout />
-      </View>
-
     );
   }
 }
@@ -54,20 +43,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  headerContainer:{
-    flex :1 ,
-    flexDirection:'column',
-    justifyContent:'space-between',
-    backgroundColor:'yellow',
+    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
+    margin: 10,
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
+    marginBottom: 5,
   },
 });
