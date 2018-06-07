@@ -27,7 +27,8 @@ const loginStyles = StyleSheet.create({
     logoContainer:{
         alignItems: 'center',
         flexGrow : 1,
-        justifyContent:'center'
+        justifyContent:'center',
+        backgroundColor:'red'
 
     },
     logo:{
