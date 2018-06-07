@@ -15,6 +15,20 @@ import PropTypes from 'prop-types';
 
 export default class NewsFeed extends Component {
 
+  componentWillMount() {
+    this.refresh(); 
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.news)
+    });
+  }
+  refresh() {
+    if (this.props.loadNews) {
+      this.props.loadNews();
+  } }
+
+
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({
@@ -28,6 +42,7 @@ export default class NewsFeed extends Component {
     this.renderRow = this.renderRow.bind(this);
     this.onModalClose = this.onModalClose.bind(this);
     this.onModalOpen = this.onModalOpen.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
 
   onModalClose() {
@@ -97,32 +112,10 @@ export default class NewsFeed extends Component {
 
 NewsFeed.propTypes = {
   news: PropTypes.arrayOf(PropTypes.object),
-  listStyles: View.propTypes.style
+  listStyles: View.propTypes.style,
+  loadNews: PropTypes.func
 };
 
-NewsFeed.defaultProps = {
-  news: [
-    {
-      title: 'React Native',
-      imageUrl: 'https://pbs.twimg.com/media/DWGeDQaVwAAApRS.png',
-      description: 'Build Native Mobile Apps using JavaScript and React',
-      date: new Date(),
-      author: 'Facebook',
-      location: 'Menlo Park, California',
-      url: 'https://facebook.github.io/react-native'
-    },
-    
-      {
-        title: 'Ansu Publishing',
-        imageUrl: 'https://pbs.twimg.com/media/DWGeDQaVwAAApRS.png',
-        description: 'Stay Relevant',
-        date: new Date(),
-        author: 'Ansu Publishing',
-        location: 'Ansu, UK',
-        url: 'https://www.packtpub.com/'
-      }
-  ]
-};
 
 const styles = StyleSheet.create({
   newsItem: {
