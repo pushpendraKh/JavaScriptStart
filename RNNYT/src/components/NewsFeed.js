@@ -5,7 +5,8 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  WebView
+  WebView,
+  RefreshControl, ActivityIndicator
 } from 'react-native';
 import NewsItem from './NewsItem';
 import SmallText from './SmallText';
@@ -20,7 +21,8 @@ export default class NewsFeed extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.news)
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.news),
+      initialLoading: false
     });
   }
   refresh() {
@@ -36,7 +38,9 @@ export default class NewsFeed extends Component {
     });
     this.state = {
       dataSource: this.ds.cloneWithRows(props.news),
-      modalVisible: false
+      modalVisible: false,
+      initialLoading: true,
+      refreshing: false
     };
 
     this.renderRow = this.renderRow.bind(this);
@@ -94,8 +98,21 @@ export default class NewsFeed extends Component {
     );
   }
 
+  renderLoader(){
+    return(<View style={[this.props.listStyles, styles.loadingContainer]}>
+                     <ActivityIndicator
+                       animating
+                       size="small"
+                       {...this.props}
+        /> </View>)
+  }
   render() {
     return (
+      (this.state.initialLoading && this.props.showLoadingSpinner
+        ?(
+          this.renderLoader()
+        ) :(
+
       <View style={globalStyles.COMMON_STYLES.pageContainer}>
         <ListView
           enableEmptySections
@@ -105,7 +122,9 @@ export default class NewsFeed extends Component {
         />
         {this.renderModal()}
       </View>
-    );
+      )
+    )
+  );
   }
 
 }
@@ -113,11 +132,25 @@ export default class NewsFeed extends Component {
 NewsFeed.propTypes = {
   news: PropTypes.arrayOf(PropTypes.object),
   listStyles: View.propTypes.style,
-  loadNews: PropTypes.func
+  loadNews: PropTypes.func,
+  showLoadingSpinner: PropTypes.bool
+
+};
+
+NewsFeed.defaultProps = {
+  showLoadingSpinner: true
 };
 
 
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  loadingContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   newsItem: {
     marginBottom: 20
   },

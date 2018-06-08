@@ -3,7 +3,7 @@ import mockData from '../mockData.json';
 
 export const loadNews = data => ({
      type: LOAD_NEWS,
-     payload: mockData
+     payload: []
 });
 export const searchNews = searchTerm => ({
      type: SEARCH_NEWS,

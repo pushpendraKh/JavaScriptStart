@@ -7,7 +7,7 @@ import { LOAD_NEWS } from '../actions/actionTypes';
        case 'LOAD_NEWS1':
           console.log('coming in saga reducer load news1')
           console.log(action.payload)
-          return state;
+          return action.payload.results || [];;
        default:
          return state;
      }

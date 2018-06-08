@@ -26,7 +26,7 @@ function* workerSaga() {
     const data = response.data
     console.log("Success")
     // dispatch a success action to the store with the new top stories
-    yield put({ type: "LOAD_NEWS", payload:data });
+    yield put({ type: "LOAD_NEWS1", payload:data });
   
   } catch (error) {
     console.log("Error in saga")
