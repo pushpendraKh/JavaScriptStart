@@ -3,6 +3,12 @@ import { createLogger} from 'redux-logger';
 import newsFeedReducer from './reducers/newsFeedReducer';
 import searchTermReducer from './reducers/searchTermReducer';
 import promiseMiddleware from 'redux-promise';
+import createSagaMiddleware from "redux-saga";
+import { watcherSaga } from "./sagas";
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
+
 const logger = createLogger();
 export default (initialState = {}) => (
      createStore(
@@ -11,5 +17,10 @@ export default (initialState = {}) => (
          searchTerm: searchTermReducer
        }),
        initialState,
-       applyMiddleware(logger, promiseMiddleware)
+       applyMiddleware(logger,sagaMiddleware)
 ) );
+
+
+export const executeSageWatcher = () => {
+    sagaMiddleware.run(watcherSaga)
+}
