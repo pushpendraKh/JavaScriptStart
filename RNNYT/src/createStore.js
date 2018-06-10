@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createLogger} from 'redux-logger';
 import newsFeedReducer from './reducers/newsFeedReducer';
 import searchTermReducer from './reducers/searchTermReducer';
+import loginReducer from './reducers/loginReducer'
 import promiseMiddleware from 'redux-promise';
 import createSagaMiddleware from "redux-saga";
 import { watcherSaga } from "./sagas";
@@ -14,7 +15,8 @@ export default (initialState = {}) => (
      createStore(
        combineReducers({
          news: newsFeedReducer,
-         searchTerm: searchTermReducer
+         searchTerm: searchTermReducer,
+         userInfo:loginReducer,
        }),
        initialState,
        applyMiddleware(logger,sagaMiddleware)

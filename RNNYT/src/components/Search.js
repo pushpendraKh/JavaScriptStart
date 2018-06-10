@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   search: {
     borderColor: globalStyles.MUTED_COLOR,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 5,
     borderWidth: 1,
     marginTop: 10,

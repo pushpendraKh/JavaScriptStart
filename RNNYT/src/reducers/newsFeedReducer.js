@@ -8,6 +8,9 @@ import { LOAD_NEWS } from '../actions/actionTypes';
           console.log('coming in saga reducer load news1')
           console.log(action.payload)
           return action.payload.results || [];;
+       case 'Login':
+          console.log("action is being fired");
+          return state
        default:
          return state;
      }
