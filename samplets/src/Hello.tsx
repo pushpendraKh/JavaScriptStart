@@ -1,19 +1,48 @@
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import store from './store';
-import { incrementCounter } from './ActionTypes'
-export interface Props {
+import { incrementCounter , decrementCounter} from './ActionTypes'
+import { connect} from 'react-redux';
+import { bindActionCreators, Dispatch ,DispatchProps} from 'redux';
+
+export interface OwnProps {
   name: string
   enthusiasmLevel?: number
-  onIncrement: () => void
-  onDecrement: () => void
+  // onIncrement: () => void
+  // onDecrement: () => void
   
 }
+
+interface StateProps {
+  count: number
+}
+
+type Props = OwnProps & StateProps & DispatchProps
+
 interface State {
   enthusiasmLevel: number
-
 }
-export default class Hello extends React.Component<Props, State> {
+
+// const mapStateToProps = state => ({
+//   isLoggedIn: state.userInfo.isLoggedIn,
+//   temp: state.userInfo.temp
+// });
+// const mapDispatchToProps = dispatch => (
+//   bindActionCreators({
+//     incrementCounter
+//   }, dispatch)
+// );
+
+function mapStateToProps(state: any, ownProps: OwnProps): StateProps {
+    return { count: state.count }
+}
+
+function mapDispatchToProps(dispatch: Dispatch<any>, ownProps: OwnProps): DispatchProps {
+   return { onIncrement : () => dispatch(incrementCounter(1)), 
+        onDecrement : () => dispatch(decrementCounter(1))
+          }
+}
+class Hello extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -22,13 +51,14 @@ export default class Hello extends React.Component<Props, State> {
     }
 
     this.state = {
-      enthusiasmLevel: store.getState().count
+      enthusiasmLevel: props.count
     }
   }
 
-  onIncrement = () => {  store.dispatch(incrementCounter(1));this.setState({enthusiasmLevel:store.getState().count + 1}); };
-  onDecrement = () => { this.setState({enthusiasmLevel:this.state.enthusiasmLevel - 1}); this.props.onDecrement() };
+  // onIncrement = () => {  store.dispatch(incrementCounter(1));this.setState({enthusiasmLevel:store.getState().count + 1}); };
+  // onDecrement = () => { this.setState({enthusiasmLevel:this.state.enthusiasmLevel - 1}); this.props.onDecrement() };
   getExclamationMarks = (numChars: number) => {
+    console.log("Ansu -----")
     console.log(numChars);
     return Array(numChars + 1).join("!")
   }
@@ -37,14 +67,14 @@ export default class Hello extends React.Component<Props, State> {
     return (
       <View style={styles.root}>
         <Text style={styles.greeting}>
-          Hello {this.props.name + this.getExclamationMarks(this.state.enthusiasmLevel)}
+          Hello {this.props.name + this.getExclamationMarks(this.props.count)}
         </Text>
 
         <View style={styles.buttons}>
           <View style={styles.button}>
             <Button
               title="-"
-              onPress={this.onDecrement}
+              onPress={this.props.onDecrement}
               accessibilityLabel="decrement"
               color="red"
             />
@@ -53,7 +83,7 @@ export default class Hello extends React.Component<Props, State> {
           <View style={styles.button}>
             <Button
               title="+"
-              onPress={this.onIncrement}
+              onPress={this.props.onIncrement}
               accessibilityLabel="increment"
               color="blue"
             />
@@ -63,6 +93,7 @@ export default class Hello extends React.Component<Props, State> {
     )
   }
 }
+
 
 // styles
 
@@ -87,3 +118,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   }
 })
+
+export default connect<StateProps, DispatchProps, OwnProps>
+  (mapStateToProps,mapDispatchToProps)(Hello)

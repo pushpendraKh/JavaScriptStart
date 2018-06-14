@@ -50,6 +50,11 @@ export const incrementCounter = (by: number): IncrementAction => ({
     by
   });
 
+  export const decrementCounter = (by: number): DecrementCounterAction => ({
+    type: TypeKeys.DEC,
+    by
+  });
+
 
 
 export type CounterActions =  IncrementCounterAction | DecrementCounterAction | ZeroCounterAction | OtherAction
