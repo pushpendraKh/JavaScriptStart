@@ -26,7 +26,6 @@ export default class App extends Component<Props> {
   constructor(props:Props){
     super(props)
   }
-
   render() {
     return (
       <View style={styles.container}>
@@ -44,7 +43,8 @@ export default class App extends Component<Props> {
     );
   }
 
-  onIncrement = () => {console.log("coming in parent");}
+  onIncrement():void  {console.log("coming in parent");}
+  ///onIncrement = () =>  {console.log("coming in parent");}
 }
 
 const styles = StyleSheet.create({

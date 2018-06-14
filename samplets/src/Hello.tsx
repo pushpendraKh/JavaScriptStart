@@ -1,6 +1,7 @@
-import React from "react"
-import { Button, StyleSheet, Text, View } from "react-native"
-
+import React from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
+import store from './store';
+import { incrementCounter } from './ActionTypes'
 export interface Props {
   name: string
   enthusiasmLevel?: number
@@ -8,7 +9,6 @@ export interface Props {
   onDecrement: () => void
   
 }
-
 interface State {
   enthusiasmLevel: number
 
@@ -22,11 +22,11 @@ export default class Hello extends React.Component<Props, State> {
     }
 
     this.state = {
-      enthusiasmLevel: props.enthusiasmLevel || 1
+      enthusiasmLevel: store.getState().count
     }
   }
 
-  onIncrement = () => {  this.setState({enthusiasmLevel:this.state.enthusiasmLevel + 1});this.props.onIncrement() };
+  onIncrement = () => {  store.dispatch(incrementCounter(1));this.setState({enthusiasmLevel:store.getState().count + 1}); };
   onDecrement = () => { this.setState({enthusiasmLevel:this.state.enthusiasmLevel - 1}); this.props.onDecrement() };
   getExclamationMarks = (numChars: number) => {
     console.log(numChars);
