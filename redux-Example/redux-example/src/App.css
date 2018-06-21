@@ -33,6 +33,22 @@
   animation: App-logo-spin infinite 20s linear;
 }
 
+.Box {
+  width: 0px;
+  height: 0px;
+  border-left: 25px solid #444;
+	border-right: 25px solid transparent;
+	border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+}
+
+.CenterLine {
+  background-color: #555;
+  width: 200;
+  height: 10;
+  
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(-10deg); }
   to { transform: rotate(10deg); }

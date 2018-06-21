@@ -3,34 +3,39 @@ import logo from './logo.svg';
 import './App.css';
 import Redux from './redux.js'
 import { createStore } from 'redux'
-//import reducer from './reducer'
+import reducer from './reducer'
 
 
-const reducer = (action, state = "1") => {
-  if (action == 'a') {
-    return state + 1
-  }
-  return state
-}
+const store = createStore(reducer)
 
-const store = createStore(reducer, "1")
 
 class App extends Component {
 
   constructor(props) {
     super(props)
     this.submit = this.submit.bind(this)
+    this.updateState = this.updateState.bind(this)
+    store.subscribe(this.updateState)
+    this.state = {
+      reducer : store.getState()
+    }
   }
 
+  updateState(){
+    console.log("update state");
+    this.setState({
+      reducer: store.getState()
+    })
+  }
   submit() {
-    store.dispatch({type: 'a'})
+    store.dispatch({type: 'ADD'})
   }
   
   render() {
-    store.subscribe(App)
+    console.log("calling");
     return (
       <div className = "App">
-        <CardView name={store.getState()} job='iOS Developer' age='21' submit={this.submit}/>
+        <Arrow/>
         <Redux style = {{ padding: '100px'}}/>
       </div>
       
@@ -50,4 +55,13 @@ const CardView = (props) => {
         <button onClick={props.submit}> Submit </button>
       </div>
     )
+}
+
+const Arrow = () => {
+  return (
+    <div className = "Box">
+     
+    </div>
+    
+  )
 }
