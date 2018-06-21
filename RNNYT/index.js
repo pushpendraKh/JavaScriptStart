@@ -4,3 +4,4 @@ import HomeScreen from './src/components/HomeScreen';
 import FlexExample from './src/components/FlexExample';
 
 AppRegistry.registerComponent('RNNYT', () => FlexExample);
+

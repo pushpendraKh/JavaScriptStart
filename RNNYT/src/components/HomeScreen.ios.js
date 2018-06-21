@@ -6,10 +6,10 @@ import {
   Vibration,
   StatusBar
 } from 'react-native';
-import NewsFeed from './NewsFeed';
+import NewsFeedContainer from '../containers/NewsFeedContainer';
 import Search from './Search';
 import * as globalStyles from '../styles/global';
-
+import SearchContainer from '../containers/SearchContainer';
 // Set the status bar for iOS to light
 StatusBar.setBarStyle('light-content');
 
@@ -45,14 +45,14 @@ export default class HomeScreen extends Component {
           selected={this.state.tab === 'newsFeed'}
           onPress={() => this.setState({ tab: 'newsFeed' })}
         >
-          <NewsFeed />
+          <NewsFeedContainer  />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon={'search'}
           selected={this.state.tab === 'search'}
           onPress={() => this.setState({ tab: 'search' })}
         >
-          <Search />
+          <SearchContainer />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           systemIcon={'bookmarks'}

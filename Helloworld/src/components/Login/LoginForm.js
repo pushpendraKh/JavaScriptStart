@@ -10,7 +10,7 @@ export default class LoginForm extends Component {
                 <TextInput style = {styles.input} placeholder = "User or Email"
                   placeholderTextColor = "rgba(255,255,255,0.7)"
                   returnKeyType = "next" 
-                  onSubmitEditing = {() => this.passwordInput.focus}
+                  onSubmitEditing = {() => this.passwordInput.focus()}
                   />
                 <TextInput secureTextEntry returnKeyType = "go"
                  placeholder = "password" style = {styles.input}  placeholderTextColor = "rgba(255,255,255,0.7)"
@@ -26,7 +26,7 @@ export default class LoginForm extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        padding:20
+        margin:50
     },
     input: {
         height:40,

@@ -5,7 +5,8 @@ import {
   View,
   Modal,
   TouchableOpacity,
-  WebView
+  WebView,
+  RefreshControl, ActivityIndicator
 } from 'react-native';
 import NewsItem from './NewsItem';
 import SmallText from './SmallText';
@@ -15,6 +16,21 @@ import PropTypes from 'prop-types';
 
 export default class NewsFeed extends Component {
 
+  componentWillMount() {
+    this.refresh(); 
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.news),
+      initialLoading: false
+    });
+  }
+  refresh() {
+    if (this.props.loadNews) {
+      this.props.loadNews();
+  } }
+
+
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({
@@ -22,12 +38,15 @@ export default class NewsFeed extends Component {
     });
     this.state = {
       dataSource: this.ds.cloneWithRows(props.news),
-      modalVisible: false
+      modalVisible: false,
+      initialLoading: true,
+      refreshing: false
     };
 
     this.renderRow = this.renderRow.bind(this);
     this.onModalClose = this.onModalClose.bind(this);
     this.onModalOpen = this.onModalOpen.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
 
   onModalClose() {
@@ -79,8 +98,21 @@ export default class NewsFeed extends Component {
     );
   }
 
+  renderLoader(){
+    return(<View style={[this.props.listStyles, styles.loadingContainer]}>
+                     <ActivityIndicator
+                       animating
+                       size="small"
+                       {...this.props}
+        /> </View>)
+  }
   render() {
     return (
+      (this.state.initialLoading && this.props.showLoadingSpinner
+        ?(
+          this.renderLoader()
+        ) :(
+
       <View style={globalStyles.COMMON_STYLES.pageContainer}>
         <ListView
           enableEmptySections
@@ -90,41 +122,35 @@ export default class NewsFeed extends Component {
         />
         {this.renderModal()}
       </View>
-    );
+      )
+    )
+  );
   }
 
 }
 
 NewsFeed.propTypes = {
   news: PropTypes.arrayOf(PropTypes.object),
-  listStyles: View.propTypes.style
+  listStyles: View.propTypes.style,
+  loadNews: PropTypes.func,
+  showLoadingSpinner: PropTypes.bool
+
 };
 
 NewsFeed.defaultProps = {
-  news: [
-    {
-      title: 'React Native',
-      imageUrl: 'https://pbs.twimg.com/media/DWGeDQaVwAAApRS.png',
-      description: 'Build Native Mobile Apps using JavaScript and React',
-      date: new Date(),
-      author: 'Facebook',
-      location: 'Menlo Park, California',
-      url: 'https://facebook.github.io/react-native'
-    },
-    
-      {
-        title: 'Ansu Publishing',
-        imageUrl: 'https://pbs.twimg.com/media/DWGeDQaVwAAApRS.png',
-        description: 'Stay Relevant',
-        date: new Date(),
-        author: 'Ansu Publishing',
-        location: 'Ansu, UK',
-        url: 'https://www.packtpub.com/'
-      }
-  ]
+  showLoadingSpinner: true
 };
 
+
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  loadingContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   newsItem: {
     marginBottom: 20
   },
