@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import LargeText from './LargeText';
-import { LeftArrow } from './Arrow';
-import { Heart } from './Heart';
+import { Arrow } from './Arrow';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 
 export default class FlexExample extends Component {
 
@@ -18,7 +18,7 @@ export default class FlexExample extends Component {
                     <View style={{ alignSelf: 'stretch'}}>
                         <View style={{flexDirection: 'row', justifyContent: 'center', }}>
                          <View style = { { width: 200, height: 1, backgroundColor: 'red', alignSelf: 'center'}}/>
-                          <LeftArrow/>
+                          <Arrow type = "LEFT"/>
                         </View>
                     </View>
                 </View>
